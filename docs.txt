@@ -1,0 +1,38 @@
+https://www.figma.com/file/nfjOAtSRFGj9zXNBa18INs/Desafio-front?node-id=12%3A20
+
+usuário root mysql - senha = admin
+
+Usuário - 
+	id 
+	nome
+	login
+	senha
+
+Ticket - 
+	id ticket
+	id quadro
+	titulo
+	descrissão
+	id criador
+	id responsável
+	tipo
+
+Quadro - 
+	id
+	id criador 
+	titulo 
+	integrantes
+		
+
+
+
+
+
+
+
+
+
+
+
+
+	
