@@ -49,7 +49,7 @@ class MySqlUserRepository implements IUsersRepository {
 
     async getUsers(): Promise<User[]> {
         try {
-            const users = await this.connection.query("SELECT * FROM users;", [])
+            const users = await this.connection.query("SELECT id, name FROM users;", [])
             console.log("get: ", users)
             return users as User[] 
             
@@ -73,6 +73,7 @@ class MySqlUserRepository implements IUsersRepository {
     async updateUser(modObj: IUpdateUserRequestDTO): Promise<boolean> {
         const query = generateUpdateSqlUser(modObj)
         if (query) {
+            console.log(query)
             const updateUser = await this.connection.query(query, [modObj.id])
             return true
         } else return false 

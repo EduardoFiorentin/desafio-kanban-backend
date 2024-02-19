@@ -15,6 +15,10 @@ const generateUpdateSqlUser = (updateData: IUpdateUserRequestDTO) => {
         if (updateData.password !== undefined) updateFields.push(`password = '${updateData.password}'`);
     }
 
+    if (updateData.hasOwnProperty('login')) {
+        if (updateData.login !== undefined) updateFields.push(`login = '${updateData.login}'`);
+    }
+
     if (updateFields.length > 0) {
         const updateQuery = `UPDATE users SET ${updateFields.join(', ')} WHERE id = ?;`;
         return updateQuery;

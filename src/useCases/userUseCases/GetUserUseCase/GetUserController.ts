@@ -26,4 +26,4 @@ class GetUserController {
     }
 }
 
-export { GetUserController } 
+export { GetUserController }

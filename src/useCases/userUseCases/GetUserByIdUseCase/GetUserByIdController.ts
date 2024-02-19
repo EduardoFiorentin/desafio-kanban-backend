@@ -12,11 +12,24 @@ class GetUserByIdController {
             const { id } = req.params
 
             const users = await this.getUserByIdUseCase.execute(id)
-            return res.status(200).json({
-                status: 200,
-                message: "Operação finalizada com sucesso",
-                data: users
-            })
+
+            if (users.length === 0) {
+                return res.status(400).json({
+                    status: 400,
+                    message: "Usuário não encontrado"
+                }) 
+            } else {
+                return res.status(400).json({
+                    status: 200,
+                    message: "Operação finalizada com sucesso",
+                    data: [
+                        {
+                            id: users[0].id,
+                            name: users[0].name
+                        }
+                    ]
+                })
+            }
             
         } catch(err) {
             console.log(err)
