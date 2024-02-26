@@ -61,6 +61,35 @@ class MySqlTicketRepository implements ITicketRepository {
             throw new Error("Repository update error")
         }
     }
+
+    async deleteTicket(id: string): Promise<boolean> {
+        try {
+
+            const ticketExists = await this.getTicketById(id)
+            if (ticketExists.length !== 0) {
+                
+                try {   
+
+                    const query = "DELETE FROM ticket WHERE id_ticket=?"
+                    const deleted: any = await this.connection.query(query, [id])
+                    console.log("Passou e vai dar merda", deleted)
+                    if (deleted?.affectedRows !== 0) return true
+                    return false
+
+                } catch (err) {
+                    console.log(err)
+                    throw new Error("Erro na deleção do ticket")
+                }
+
+            } else {
+                return false
+            }
+
+        } catch (err) {
+            console.log(err)
+            throw new Error("Erro no repositorio ticket - delete ticket")
+        }
+    }
 }
 
 export { MySqlTicketRepository }

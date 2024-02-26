@@ -8,6 +8,7 @@ import { createTicketController } from "./useCases/ticketUseCases/CreateTicketUs
 import { getTicketsController } from "./useCases/ticketUseCases/GetTicketsUseCase";
 import { getTicketByIdController } from "./useCases/ticketUseCases/GetTicketByIdUseCase";
 import { updateTicketController } from "./useCases/ticketUseCases/UpdateTicketUseCase";
+import { deleteTicketController } from "./useCases/ticketUseCases/DeleteTicketUseCase";
 
 const router = Router() 
 
@@ -51,8 +52,9 @@ router.put('/ticket/:id', (req: Request, res: Response) => {
     return updateTicketController.handle(req, res)
 })
 
-router.delete("/ticket/:id", , (req: Request, res: Response) => {
-    // return deleteTicketController.handle(req, res)
+router.delete("/ticket/:id",
+ (req: Request, res: Response) => {
+    return deleteTicketController.handle(req, res)
 })
 
 
