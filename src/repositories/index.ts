@@ -1,7 +1,9 @@
 import { MySQLDatabase } from "../infrastructure/MySQLDatabase/MySQLDatabase";
+import { MySqlTicketRepository } from "./implementation/MySqlTicketRepository";
 import { MySqlUserRepository } from "./implementation/MySqlUserRepository";
 
 const connection = new MySQLDatabase()
-const database = new MySqlUserRepository(connection)
+const userDatabase = new MySqlUserRepository(connection)
+const ticketDatabase = new MySqlTicketRepository(connection)
 
-export { database }
+export { userDatabase, ticketDatabase }

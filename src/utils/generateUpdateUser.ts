@@ -7,10 +7,6 @@ const generateUpdateSqlUser = (updateData: IUpdateUserRequestDTO) => {
         if (updateData.name !== undefined) updateFields.push(`name = '${updateData.name}'`);
     }
 
-    if (updateData.hasOwnProperty('email')) {
-        if (updateData.login !== undefined) updateFields.push(`.login = '${updateData.login}'`);
-    }
-
     if (updateData.hasOwnProperty('password')) {
         if (updateData.password !== undefined) updateFields.push(`password = '${updateData.password}'`);
     }

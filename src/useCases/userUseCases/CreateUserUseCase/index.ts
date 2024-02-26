@@ -1,8 +1,8 @@
 import { CreateUserController } from "./CreateUserController";
 import { CreateUserUseCase } from "./CreateUserUseCase";
-import { database } from "../../../repositories";
+import { userDatabase } from "../../../repositories";
 
-const createUserUseCase = new CreateUserUseCase(database) 
+const createUserUseCase = new CreateUserUseCase(userDatabase) 
 const createUserController = new CreateUserController(createUserUseCase)
 
 export {createUserController}

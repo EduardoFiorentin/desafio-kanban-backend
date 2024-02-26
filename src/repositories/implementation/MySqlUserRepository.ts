@@ -1,5 +1,5 @@
 import { User } from "../../entities/User";
-import { IUserJson } from "../../entities/types/userJson";
+// import { IUserJson } from "../../entities/types/userJson";
 import { MySQLDatabase } from "../../infrastructure/MySQLDatabase/MySQLDatabase";
 import { IUpdateUserRequestDTO } from "../../useCases/userUseCases/UpdateUserUseCase/UpdateUserRequestDTO";
 import { generateUpdateSqlUser } from "../../utils/generateUpdateUser";
