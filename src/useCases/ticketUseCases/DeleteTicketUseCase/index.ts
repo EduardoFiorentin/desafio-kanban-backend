@@ -1,6 +1,6 @@
 import { ticketDatabase } from "../../../repositories";
-import { DeleteTicketController } from "./deleteTicketController";
-import { DeleteTicketUseCase } from "./deleteTicketUseCase";
+import { DeleteTicketController } from "./DeleteTicketController";
+import { DeleteTicketUseCase } from "./DeleteTicketUseCase";
 
 const deleteTicketUseCase = new DeleteTicketUseCase(ticketDatabase)
 const deleteTicketController = new DeleteTicketController(deleteTicketUseCase)

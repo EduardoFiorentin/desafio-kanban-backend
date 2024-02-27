@@ -9,10 +9,16 @@ import { getTicketsController } from "./useCases/ticketUseCases/GetTicketsUseCas
 import { getTicketByIdController } from "./useCases/ticketUseCases/GetTicketByIdUseCase";
 import { updateTicketController } from "./useCases/ticketUseCases/UpdateTicketUseCase";
 import { deleteTicketController } from "./useCases/ticketUseCases/DeleteTicketUseCase";
+import { userDatabase } from "./repositories";
+import { authUserController } from "./useCases/userUseCases/AuthUserUserCase";
 
 const router = Router() 
 
 // USERS
+
+router.post('/auth', async (req: Request, res: Response) => {
+    return authUserController.handle(req, res)
+})
 
 router.get("/users", async (req: Request, res: Response) => {
     return getUserController.handle(req, res)
@@ -52,8 +58,7 @@ router.put('/ticket/:id', (req: Request, res: Response) => {
     return updateTicketController.handle(req, res)
 })
 
-router.delete("/ticket/:id",
- (req: Request, res: Response) => {
+router.delete("/ticket/:id", (req: Request, res: Response) => {
     return deleteTicketController.handle(req, res)
 })
 

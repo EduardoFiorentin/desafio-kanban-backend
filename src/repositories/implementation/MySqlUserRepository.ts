@@ -78,6 +78,31 @@ class MySqlUserRepository implements IUsersRepository {
             return true
         } else return false 
     }
+
+    async auth(login: string, password: string): Promise<User[]> {
+        try {
+
+            const query = "SELECT * FROM users WHERE login=?"
+            const userFound: any = await this.connection.query(query, [login])
+
+            console.log("userFound ",userFound)
+
+            if (userFound.length !== 0) {
+
+                if (userFound[0].password === password) {
+
+                    console.log("teste de pass: ", userFound[0].password === password, userFound[0].password)
+                    return userFound as User[]
+
+                } else return [] as User[]
+
+            } else return [] as User[]
+
+        } catch(err) {
+            console.log(err)
+            throw new Error("Erro no auth")
+        }
+    }
 }
 
 export { MySqlUserRepository }

@@ -6,5 +6,6 @@ export interface IUsersRepository {
     getUsersById(id: string): Promise<User[]>,
     createUser(user: User): Promise<boolean>,
     updateUser(modObj: IUpdateUserRequestDTO): Promise<boolean>,
-    deleteUser(id: string): Promise<boolean>
+    deleteUser(id: string): Promise<boolean>,
+    auth(login: string, password: string): Promise<User[]>
 }

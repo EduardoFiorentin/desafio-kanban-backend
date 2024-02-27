@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { DeleteTicketUseCase } from "./deleteTicketUseCase";
+import { DeleteTicketUseCase } from "./DeleteTicketUseCase";
 
 class DeleteTicketController {
     constructor(
