@@ -36,7 +36,7 @@ class CreateTicketController {
                     id_creator,
                     id_accountable,
                     type,
-                })
+                }, req)
                 if (createTicket.created) return res.status(200).json({status: 200, message: "Ticket criado"})
                 else return res.status(400).json({status: 400, message: createTicket.message})
 

@@ -10,14 +10,15 @@ class AuthUserController {
         try {
 
             const { login, password } = req.body
+
             const authUser = await this.authUserUseCase.execute(login, password)
 
-            if (authUser.length !== 0) {
-                return res.status(200).json({status: 200, message: "Usuário logado com sucesso!", data: [{
-                    id: authUser[0].id,
-                    name: authUser[0].name,
-                    login: authUser[0].login
-                }]})
+            if (authUser) {
+                // gerar token
+
+
+                // resposta ao usuário
+                return res.status(200).json({status: 200, message: "Usuário logado com sucesso!", data: authUser})
             }
 
             return res.status(400).json({status: 400, message: "LogIn não autorizado!"})

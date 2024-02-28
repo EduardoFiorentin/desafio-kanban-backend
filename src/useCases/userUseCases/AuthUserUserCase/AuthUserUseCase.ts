@@ -1,4 +1,5 @@
 import { IUsersRepository } from "../../../repositories/IUsersRepository";
+import { validateUserUseCase } from "../ValidateUserUseCase";
 
 class AuthUserUseCase {
     constructor(
@@ -12,7 +13,7 @@ class AuthUserUseCase {
                 const authUser = await this.userRepository.auth(login, password)
                 console.log("useCase", authUser)
                 return authUser
-            } else return []
+            } else return null
 
         } catch (err) {
             throw new Error("Erro no use case - auth user")

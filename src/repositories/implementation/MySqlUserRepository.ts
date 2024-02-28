@@ -1,9 +1,13 @@
 import { User } from "../../entities/User";
 // import { IUserJson } from "../../entities/types/userJson";
 import { MySQLDatabase } from "../../infrastructure/MySQLDatabase/MySQLDatabase";
+import { IAuthUserDTO } from "../../useCases/userUseCases/AuthUserUserCase/AuthUserDTO";
 import { IUpdateUserRequestDTO } from "../../useCases/userUseCases/UpdateUserUseCase/UpdateUserRequestDTO";
 import { generateUpdateSqlUser } from "../../utils/generateUpdateUser";
 import { IUsersRepository } from "../IUsersRepository";
+
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 class MySqlUserRepository implements IUsersRepository {
 
@@ -79,7 +83,7 @@ class MySqlUserRepository implements IUsersRepository {
         } else return false 
     }
 
-    async auth(login: string, password: string): Promise<User[]> {
+    async auth(login: string, password: string): Promise<IAuthUserDTO | null> {
         try {
 
             const query = "SELECT * FROM users WHERE login=?"
@@ -91,12 +95,22 @@ class MySqlUserRepository implements IUsersRepository {
 
                 if (userFound[0].password === password) {
 
+                    // gerar token de acesso
+                    const secret = process.env.SECRET
+                    console.log("secret", process.env.SECRET)
+                    const token = jwt.sign({}, secret)
+
                     console.log("teste de pass: ", userFound[0].password === password, userFound[0].password)
-                    return userFound as User[]
+                    return {
+                        id: userFound[0].id,
+                        login: userFound[0].login,
+                        name: userFound[0].name,
+                        token
+                    } as IAuthUserDTO
 
-                } else return [] as User[]
+                } else return null
 
-            } else return [] as User[]
+            } else return null
 
         } catch(err) {
             console.log(err)

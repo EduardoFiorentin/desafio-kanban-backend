@@ -2,13 +2,15 @@ import { title } from "process";
 import { Ticket } from "../../../entities/Ticket";
 import { ICreateTicketDTO } from "./CreateTicketRequestDTO";
 import { ITicketRepository } from "../../../repositories/ITicketRepository";
+import { validateUserUseCase } from "../../userUseCases/ValidateUserUseCase";
+import { Request } from "express";
 
 class CreateTicketUseCase {
     constructor(
         private ticketRepository: ITicketRepository
     ){}
 
-    async execute(data: ICreateTicketDTO) {
+    async execute(data: ICreateTicketDTO, req: Request) {
         try {
 
             // validações 
@@ -18,6 +20,9 @@ class CreateTicketUseCase {
             if (data.id_creator.length !== 36) return {created: false, message: "Id do criador tem tamanho incorreto"}
             if (data.id_accountable.length !== 36) return {created: false, message: "Id do responsável tem tamanho incorreto"}
             if (!['Bem','Predial','Procedimento'].includes(data.type)) return {created: false, message: "Tipo inválido"}
+
+            // validar permissão 
+            if (!validateUserUseCase.auth(req.headers['authorization'])) return {created: false, message: "Operação não autorizada"}
 
             const newTicket = new Ticket(Object.assign({}, data))
             const createTicket = await this.ticketRepository.createTicket(newTicket)
