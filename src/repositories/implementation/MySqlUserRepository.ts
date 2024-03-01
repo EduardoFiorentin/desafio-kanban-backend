@@ -86,6 +86,8 @@ class MySqlUserRepository implements IUsersRepository {
     async auth(login: string, password: string): Promise<IAuthUserDTO | null> {
         try {
 
+            await new Promise(resolve => setTimeout(resolve, 2000))
+
             const query = "SELECT * FROM users WHERE login=?"
             const userFound: any = await this.connection.query(query, [login])
 
