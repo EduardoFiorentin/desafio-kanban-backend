@@ -14,9 +14,6 @@ class AuthUserController {
             const authUser = await this.authUserUseCase.execute(login, password)
 
             if (authUser) {
-                // gerar token
-
-
                 // resposta ao usuário
                 return res.status(200).json({status: 200, message: "Usuário logado com sucesso!", data: authUser})
             }

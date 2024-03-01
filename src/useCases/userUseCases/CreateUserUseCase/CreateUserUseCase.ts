@@ -21,7 +21,7 @@ class CreateUserUseCase {
         } catch(err) {
             throw new Error(`Erro no usecase: ${err}`)
         }
-    }
+    }   
 }
 
 export { CreateUserUseCase }
