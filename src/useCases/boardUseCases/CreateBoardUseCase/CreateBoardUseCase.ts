@@ -28,7 +28,7 @@ class CreateBoardUseCase {
 
             const createBoard = await this.boardRepository.createBoard(newBoard)
 
-            if (createBoard.length !== 0) return {created: true, message: ''}
+            if (createBoard) return {created: true, message: ''}
             else  return {created: false, message: 'Não foi possível criar um novo quadro!'}
 
         } catch (err) {

@@ -11,13 +11,16 @@ class CreateBoardController {
         try {
 
             const {id_creator, title, description} = req.body
+            console.log({id_creator, title, description})
             const allDefined = allPropertiesDefined({id_creator, title, description})
+
+            // console.log(allDefined)
 
             if (allDefined) {
 
                 const createBoard = await this.createBoardUseCase.execute({id_creator, title, description}, req)
-                if (createBoard.created) return res.status(200).json({status: 200, message: "Ticket criado"})
-
+                if (createBoard.created) return res.status(200).json({status: 200, message: "Board criado"})
+                else return res.status(400).json({status: 400, message: createBoard.message})
 
             } return res.status(400).json({status: 400, message: "Há dados faltando"})
 

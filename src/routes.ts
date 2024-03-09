@@ -11,6 +11,9 @@ import { updateTicketController } from "./useCases/ticketUseCases/UpdateTicketUs
 import { deleteTicketController } from "./useCases/ticketUseCases/DeleteTicketUseCase";
 import { userDatabase } from "./repositories";
 import { authUserController } from "./useCases/userUseCases/AuthUserUserCase";
+import { createBoardController } from "./useCases/boardUseCases/CreateBoardUseCase";
+import { deleteBoardController } from "./useCases/boardUseCases/DeleteBoardUseCase";
+import { updateBoardController } from "./useCases/boardUseCases/UpdateBoardUseCase";
 
 const router = Router() 
 
@@ -62,5 +65,18 @@ router.delete("/ticket/:id", (req: Request, res: Response) => {
     return deleteTicketController.handle(req, res)
 })
 
+
+// BOARD
+router.post("/board", (req: Request, res: Response) => {
+    return createBoardController.handle(req, res)
+})
+
+router.delete("/board/:id", (req: Request, res: Response) => {
+    return deleteBoardController.handle(req, res)
+})
+
+router.put("/board/:id", (req: Request, res: Response) => {
+    return updateBoardController.handle(req, res)
+})
 
 export { router }
