@@ -14,6 +14,7 @@ import { authUserController } from "./useCases/userUseCases/AuthUserUserCase";
 import { createBoardController } from "./useCases/boardUseCases/CreateBoardUseCase";
 import { deleteBoardController } from "./useCases/boardUseCases/DeleteBoardUseCase";
 import { updateBoardController } from "./useCases/boardUseCases/UpdateBoardUseCase";
+import { getBoardsController } from "./useCases/boardUseCases/GetBoardsUseCase";
 
 const router = Router() 
 
@@ -77,6 +78,10 @@ router.delete("/board/:id", (req: Request, res: Response) => {
 
 router.put("/board/:id", (req: Request, res: Response) => {
     return updateBoardController.handle(req, res)
+})
+
+router.get("/board", (req: Request, res: Response) => {
+    return getBoardsController.handle(req, res)
 })
 
 export { router }

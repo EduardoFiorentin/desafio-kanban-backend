@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { GetBoardsUseCase } from "./getBoardsUseCase";
+import { GetBoardsUseCase } from "./GetBoardsUseCase";
 
 class GetBoardsController {
     constructor(
@@ -10,8 +10,13 @@ class GetBoardsController {
     async handle (req: Request, res: Response) {
         try {
 
-            const boards = this.getBoardUseCase.execute(req)
-            return res.status(200).json({status: 200, message: "Operação finalizada com sucesso!", data: boards})
+            const boards = await this.getBoardUseCase.execute(req)
+            
+            if (boards.sucess) {
+                return res.status(200).json({status: 200, message: "Operação realizada com sucesso!", data: boards.data})
+            } else {
+                return res.status(400).json({status: 400, message: boards.message})
+            }
 
         } catch (err) {
             return res.status(500).json({
@@ -24,5 +29,3 @@ class GetBoardsController {
 
 export { GetBoardsController }
 
-
-// terminar a lógica daqui e implementar 

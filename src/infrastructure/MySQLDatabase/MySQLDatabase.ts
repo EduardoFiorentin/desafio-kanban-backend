@@ -1,12 +1,5 @@
 import mysql, { ConnectionOptions } from 'mysql2/promise'
 
-// interface IConfigConnection {
-//     host: string,
-//     user: string,
-//     password: string,
-//     database: string
-// }
-
 class MySQLDatabase {
     private connection
 
@@ -26,11 +19,6 @@ class MySQLDatabase {
     }
 
     async query(sql:string, params: string[]) {
-        // return new Promise(async (resolve, reject) => {
-        //     if (this.connection) {
-        //         return await this.connection.query(sql, params);
-        //     }
-        // });
         try {
             const query = await this.connection?.query(sql, params)
             console.log(query)
