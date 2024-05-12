@@ -1,7 +1,7 @@
 import { Request } from "express";
 import { IBoardRepository } from "../../../repositories/IBoardRepository";
 import { ICreateBoardDTO } from "./CreateBoardDTO";
-import { validateUserUseCase } from "../../userUseCases/ValidateUserUseCase";
+import { validateUserUseCase } from "../../userUseCases/ValidateTokenUseCase";
 import { Board } from "../../../entities/Board";
 
 type ControllerResponse = {created: boolean, message: string} 

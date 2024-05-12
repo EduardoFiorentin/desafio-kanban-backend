@@ -21,7 +21,7 @@ class MySQLDatabase {
     async query(sql:string, params: string[]) {
         try {
             const query = await this.connection?.query(sql, params)
-            console.log(query)
+            console.log("Query: database connection - ", query)
             if(query) return query[0]
             return []
             

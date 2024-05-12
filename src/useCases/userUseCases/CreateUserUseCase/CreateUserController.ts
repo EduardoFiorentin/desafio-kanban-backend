@@ -11,15 +11,17 @@ class CreateUserController {
 
         try {
             const createdUser = await this.createUserUseCase.execute(body)
-            if (createdUser) {
+            if (createdUser.sucess) {
                 return res.status(201).json({
                     status: 201,
-                    message: "Usuário criado!"
+                    message: "Usuário criado com sucesso!"
                 })
             } else {
                 return res.status(400).json({
                     status: 400,
-                    message: "Erro! Verifique as informações e tente novamente!"
+                    message: createdUser.exception ? 
+                                createdUser.exception : 
+                                "Não foi possível criar um novo usuário!"
                 })
             }
 

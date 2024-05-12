@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 
 require('dotenv').config()
 
-class ValidateUserUseCase {
+class ValidateTokenUseCase {
     auth = (authHeader: string | undefined) => {
         if (authHeader === undefined) return false
 
@@ -26,5 +26,5 @@ class ValidateUserUseCase {
 }
 
 export {
-    ValidateUserUseCase
+    ValidateTokenUseCase
 }

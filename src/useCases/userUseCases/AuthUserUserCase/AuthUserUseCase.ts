@@ -1,5 +1,5 @@
 import { IUsersRepository } from "../../../repositories/IUsersRepository";
-import { validateUserUseCase } from "../ValidateUserUseCase";
+import { validateUserUseCase } from "../ValidateTokenUseCase";
 
 class AuthUserUseCase {
     constructor(

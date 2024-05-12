@@ -6,7 +6,7 @@ class GetUserUseCase {
         private userRepository: IUsersRepository
     ){}
     
-    async execute() {
+    async execute(): Promise<ISystemResponsePattern> {
         try {
             const users = await this.userRepository.getUsers() 
             return users

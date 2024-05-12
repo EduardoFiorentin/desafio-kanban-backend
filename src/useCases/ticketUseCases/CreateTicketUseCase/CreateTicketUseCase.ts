@@ -2,7 +2,7 @@ import { title } from "process";
 import { Ticket } from "../../../entities/Ticket";
 import { ICreateTicketDTO } from "./CreateTicketRequestDTO";
 import { ITicketRepository } from "../../../repositories/ITicketRepository";
-import { validateUserUseCase } from "../../userUseCases/ValidateUserUseCase";
+import { validateUserUseCase } from "../../userUseCases/ValidateTokenUseCase";
 import { Request } from "express";
 
 class CreateTicketUseCase {

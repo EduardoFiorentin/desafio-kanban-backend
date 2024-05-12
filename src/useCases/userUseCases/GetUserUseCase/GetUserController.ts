@@ -13,7 +13,7 @@ class GetUserController {
             return res.status(200).json({
                 status: 200,
                 message: "Operação finalizada com sucesso",
-                data: users
+                data: users.data
             })
             
         } catch(err) {

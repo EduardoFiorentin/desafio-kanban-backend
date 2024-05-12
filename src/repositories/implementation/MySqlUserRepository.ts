@@ -15,14 +15,19 @@ class MySqlUserRepository implements IUsersRepository {
         private connection: MySQLDatabase
     ){}
 
-    async createUser(user: User): Promise<boolean> {
+    async createUser(user: User): Promise<ISystemResponsePattern> {
         try {
             const newUser = await this.connection.query(
                 "INSERT INTO users(id, name, login, password) VALUES (?, ?, ?, ?);", 
                 [user.id, user.name, user.login, user.password]
             )
-            if (newUser) return true
-            else return false 
+            if (newUser) return {
+                sucess: true,
+                data: [user]
+            }
+            else return {
+                sucess: false
+            }
 
         } catch(err) {
             throw new Error(`Erro criação de user: ${err}`)
@@ -33,7 +38,7 @@ class MySqlUserRepository implements IUsersRepository {
         try {
 
             const userExists = await this.getUsersById(id)
-            if (userExists.length !== 0) {
+            if (userExists.data && userExists.data.length !== 0) {
                 const deleteUser = this.connection.query("DELETE FROM users WHERE id=?;", [id])
                 const deleted = deleteUser
                     .then(() =>  true)
@@ -51,24 +56,39 @@ class MySqlUserRepository implements IUsersRepository {
         }
     }
 
-    async getUsers(): Promise<User[]> {
+    async getUsers(): Promise<ISystemResponsePattern> {
         try {
             const users = await this.connection.query("SELECT id, name FROM users;", [])
             console.log("get: ", users)
-            return users as User[] 
-            
+            // if ((users as User[]).length !== 0) return {
+            //     sucess: true,
+            //     data: users as User[]
+            // } 
+            // else return {
+            //     sucess: false
+            // }
+            return {
+                sucess: true,
+                data: users as User[]
+            } 
+
         } catch(err) {
             throw new Error(`Erro getuser: ${err}`)
         }
     }
 
-    async getUsersById(id: string): Promise<User[]> {
+    async getUsersById(id: string): Promise<ISystemResponsePattern> {
         try {
             console.log(id)
             const users = await this.connection.query("SELECT * FROM users WHERE id=?;", [id])
-            console.log("get: ", users)
-            return users as User[] 
-            
+
+            if((users as User[]).length !== 0) return {
+                sucess: true,
+                data: users as User[]
+            }
+            else return {
+                sucess: false, 
+            }
         } catch(err) {
             throw new Error(`Erro getuserbyid: ${err}`)
         }

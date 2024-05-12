@@ -1,6 +1,6 @@
 import { Request } from "express";
 import { IBoardRepository } from "../../../repositories/IBoardRepository";
-import { validateUserUseCase } from "../../userUseCases/ValidateUserUseCase";
+import { validateUserUseCase } from "../../userUseCases/ValidateTokenUseCase";
 
 class DeleteBoardUseCase {
     constructor(

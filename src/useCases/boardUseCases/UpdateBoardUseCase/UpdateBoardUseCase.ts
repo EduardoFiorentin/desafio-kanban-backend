@@ -1,7 +1,7 @@
 import { Request } from "express";
 import { IBoardRepository } from "../../../repositories/IBoardRepository";
 import { IUpdateBoardRequestDTO } from "./UpdateBoardRequestDTO";
-import { validateUserUseCase } from "../../userUseCases/ValidateUserUseCase";
+import { validateUserUseCase } from "../../userUseCases/ValidateTokenUseCase";
 
 class UpdateBoardUseCase {
     constructor(

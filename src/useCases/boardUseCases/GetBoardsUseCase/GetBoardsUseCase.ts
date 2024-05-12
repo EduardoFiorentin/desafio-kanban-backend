@@ -1,7 +1,7 @@
 import { Request } from "express";
 import { IBoardRepository } from "../../../repositories/IBoardRepository";
 import { Board } from "../../../entities/Board";
-import { validateUserUseCase } from "../../userUseCases/ValidateUserUseCase";
+import { validateUserUseCase } from "../../userUseCases/ValidateTokenUseCase";
 
 interface IBoardUseCaseDTO {
     sucess: boolean, 
